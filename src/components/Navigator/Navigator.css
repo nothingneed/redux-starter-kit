@@ -1,0 +1,30 @@
+
+.navigators {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: absolute;
+	right: 0;
+	left: 0;
+}
+
+.navigators li {
+	display: inline;
+}
+
+.navigators li a {
+	color: inherit;
+	margin: 3px;
+	padding: 3px 7px;
+	text-decoration: none;
+	border: 1px solid transparent;
+	border-radius: 3px;
+}
+
+.navigators li a:hover {
+	border-color: rgba(255, 47, 47, 0.6);
+}
+
+.navigators li a.selected {
+	border-color: rgba(255, 47, 47, 1);
+}

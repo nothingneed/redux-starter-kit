@@ -1,0 +1,9 @@
+.rounded-box {
+  background: rebeccapurple;
+  color: #333;
+  max-width: 700px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #003957;
+  border-top-width: 0;
+}

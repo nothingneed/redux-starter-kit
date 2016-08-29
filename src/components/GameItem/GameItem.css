@@ -1,0 +1,22 @@
+
+.gameItem {
+  composes: rounded-box from "styles/layout.css";
+}
+
+.gameItem h2{
+	color: white;
+	margin: 3px;
+	padding: 3px 7px;
+	text-decoration: none;
+	border: 1px solid transparent;
+	border-radius: 3px;
+}
+
+.gameItem h5{
+	color: white;
+	margin: 3px;
+	padding: 3px 7px;
+	text-decoration: none;
+	border: 1px solid transparent;
+	border-radius: 3px;
+}
