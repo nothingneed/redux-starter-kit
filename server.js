@@ -1,22 +1,46 @@
 
+var request = require('request')
 var webpack = require('webpack')
-var webpackDevMiddleware = require('webpack-dev-middleware')
-var webpackHotMiddleware = require('webpack-hot-middleware')
-var config = require('./webpack.config.mid')
+var WebpackDevServer = require('webpack-dev-server')
 
 var app = new (require('express'))()
-var port = 3000
+var serverPort = 3000
+var webpackPort = 3001
 
+var config = require('./webpack-hot-dev-server.config')
+config.entry.main.unshift("webpack-dev-server/client?http://localhost:"+webpackPort+"/", "webpack/hot/dev-server");
+config.plugins.push( new webpack.HotModuleReplacementPlugin())
+
+var entryHtml
+console.log(config)
 var compiler = webpack(config)
-app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
-app.use(webpackHotMiddleware(compiler))
-app.get('/', function(req, res) {
-	res.sendFile(__dirname + '/src/index.html')
+new WebpackDevServer(compiler, {
+  noInfo: false,
+	publicPath: config.output.publicPath,
+	hot: true,
+	colors: true
+   }).listen(webpackPort, 'localhost', function (err, result) {
+  if (err) {
+    return console.log(err)
+  }
+  request('http://localhost:'+ webpackPort + '/dist/', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+     console.log(body)
+     entryHtml = body
+    }
+  })
+  console.log('webpack served at http://localhost:'+ webpackPort + '/')
 })
- var bodyParser = require('body-parser');
 
- app.use(bodyParser.urlencoded({ extended: false }))
- app.use(bodyParser.json())
+
+app.get('/', function(req, res) {
+  res.send(entryHtml)
+//	res.sendFile(__dirname + '/index.html')
+})
+
+var bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 app.get('/getGameList', function(req, res) { //这里模拟一个真实的应答服务器
 	console.info(req.query)
@@ -25,17 +49,17 @@ app.get('/getGameList', function(req, res) { //这里模拟一个真实的应答
 	var game = require('./src/api')
 	res.send(game[req.query.id])
 })
+
 app.post('/test', function(req, res) {
     console.log(req.query)
     console.log(req.body)
-
-
 })
 
-app.listen(port, function(error) {
+app.listen(serverPort, function(error) {
     if (error) {
 		console.error(error)
 	} else {
-		console.info('==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.', port, port)
+		console.info('==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.', serverPort, serverPort)
 	}
 })
+

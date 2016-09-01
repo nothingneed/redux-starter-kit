@@ -1,5 +1,5 @@
 /**
- * 模拟客户端-服务器请求 
+ * 模拟客户端-服务器请求
  */
 import _catalog from './catalog.json'
 import _gamelist from './gameList.json'

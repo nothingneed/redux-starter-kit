@@ -11,15 +11,9 @@ export default function configureStore(preloadedState) {
 		[thunk] :
 		[thunk, logger()]
 
-	const store = createStore(rootReducer, preloadedState, applyMiddleware(...middleware))
+    console.log(process.env.NODE_ENV)
 
-	if (module.hot) {
-		// Enable Webpack hot module replacement for reducers
-		module.hot.accept('../reducers', () => {
-			const nextReducer = require('../reducers').default
-			store.replaceReducer(nextReducer)
-		})
-	}
+	const store = createStore(rootReducer, preloadedState, applyMiddleware(...middleware))
 
 
 	return store

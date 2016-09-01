@@ -22,11 +22,10 @@ import {
 
 import {syncHistoryWithStore} from 'react-router-redux'
 
+console.log('start')
 
-
-	
 const store = configureStore() //{catalog:_catalog}//配置仓库，传入的同构数据如果使用combineReducers处理，则必须是带同样key的普通对象
-const history = syncHistoryWithStore(browserHistory, store)
+const history = syncHistoryWithStore(hashHistory, store)
 
 store.dispatch(getGameCatalog(_catalog)) //模拟第一次数据请求
 const rootEl = document.getElementById('root')
