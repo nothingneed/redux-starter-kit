@@ -1,7 +1,9 @@
 {
-  "name": "game-example",
+  "name": "redux-example",
   "version": "0.1.0",
-  "description": "Game example",
+  "description": "redux example",
+  "repository": "nothingneed/redux-starter-kit",
+  "license": "MIT",
   "scripts": {
     "start": "node server.js",
     "devserver": "webpack-dev-server --config webpack-hot-dev-server.config.js --hot --progress --colors --port 3001 --inline",
