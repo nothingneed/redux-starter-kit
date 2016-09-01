@@ -13,7 +13,7 @@
 - npm run biuld: 生成生产文件
 
 ##feature：
-1： react + redux + router + cssModule
-2： webpack配置动态生成
-3： 静态资源加hash，入口使用模板html动态生成
-4： 开发时react-hot-loader + 运行时sourceMap调试
+- react + redux + router + cssModule
+- webpack配置动态生成
+- 静态资源加hash，入口使用模板html动态生成
+- 开发时react-hot-loader + 运行时sourceMap调试
