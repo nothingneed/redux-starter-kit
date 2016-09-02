@@ -14,6 +14,7 @@ module.exports = function(options) {
   var port = options.port ? options.port : 3001
 	var entry = {
 		 main : [path.join(SRC_PATH, 'index')],
+     vendor: ['react']
     };
 	var module = {
     loaders: [{
@@ -68,7 +69,7 @@ module.exports = function(options) {
 	 ];
 
 	if(options.commonsChunk) { // 分析以下模块的共用代码, 单独打一个包到common.js
-		plugins.push(new webpack.optimize.CommonsChunkPlugin("commons", "commons.js" + (options.longTermCaching ? "?[chunkhash:8]" : "")));
+		plugins.push(new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.js" + (options.longTermCaching ? "?[chunkhash:8]" : "")));
 	}
 
 	 if(options.separateStylesheet) {
@@ -80,6 +81,9 @@ module.exports = function(options) {
 	if(options.minimize ) {  //优化打包尺寸
 		plugins.push(
 			new webpack.optimize.UglifyJsPlugin({
+           output: {
+        comments: false,  // remove all comments
+      },
 				compressor: {
 					warnings: false
 				}
