@@ -5,10 +5,11 @@ var WebpackDevServer = require('webpack-dev-server')
 
 var app = new (require('express'))()
 var serverPort = 3000
-var webpackPort = 3001
+
 
 var config = require('./webpack-hot-dev-server.config')
-config.entry.main.unshift("webpack-dev-server/client?http://localhost:"+webpackPort+"/", "webpack/hot/dev-server");
+var webserverPort = config.webserverPort
+config.entry.main.unshift("webpack-dev-server/client?http://localhost:"+webserverPort+"/", "webpack/hot/dev-server");
 config.plugins.push( new webpack.HotModuleReplacementPlugin())
 
 var entryHtml
@@ -19,17 +20,17 @@ new WebpackDevServer(compiler, {
 	publicPath: config.output.publicPath,
 	hot: true,
 	colors: true
-   }).listen(webpackPort, 'localhost', function (err, result) {
+   }).listen(webserverPort, 'localhost', function (err, result) {
   if (err) {
     return console.log(err)
   }
-  request('http://localhost:'+ webpackPort + '/dist/', function (error, response, body) {
+  request('http://localhost:'+ webserverPort + '/dist/', function (error, response, body) {
     if (!error && response.statusCode == 200) {
      console.log(body)
      entryHtml = body
     }
   })
-  console.log('webpack served at http://localhost:'+ webpackPort + '/')
+  console.log('webpack served at http://localhost:'+ webserverPort + '/')
 })
 
 

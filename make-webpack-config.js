@@ -7,11 +7,12 @@ var ROOT_PATH = path.resolve(__dirname)
 var SRC_PATH = path.join(ROOT_PATH, 'src')
 var DIST_PATH = path.join(ROOT_PATH, 'dist')
 var TEM_PATH = path.join(ROOT_PATH, 'templates')
-
+var webserverPort =3001
 
 module.exports = function(options) {
 
-  var port = options.port ? options.port : 3001
+ // var webserport = options.port ? options.port : 3001
+
 	var entry = {
 		 main : [path.join(SRC_PATH, 'index')],
      vendor: ['react']
@@ -45,7 +46,7 @@ module.exports = function(options) {
 	var extensions = ["", ".js", ".jsx"];
 
 	var publicPath = options.devServer ?
-		"http://localhost:" + port + "/dist/":
+		"http://localhost:" + webserverPort + "/dist/":
 		"/dist/";
 
 	var output = {
@@ -120,5 +121,6 @@ module.exports = function(options) {
 			alias: alias
 		},
 		plugins: plugins,
+    webserverPort:webserverPort
 	};
 };
