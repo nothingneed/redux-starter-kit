@@ -1,4 +1,4 @@
-//import 'babel-polyfill'				//使用wabpack一般无需使用此填缝工具，否则可使用此模块让浏览器支持ES6，ES7
+import 'babel-polyfill'//浏览器填缝工具
 import React from 'react'
 import ReactDOM from 'react-dom' //14版本以后，reactDom已从React中分离
 import { Provider } from 'react-redux' //Provider将redux数据结构与react绑定

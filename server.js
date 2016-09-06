@@ -9,7 +9,7 @@ var serverPort = 3000
 
 var config = require('./webpack-hot-dev-server.config')
 var webserverPort = config.webserverPort
-config.entry.main.unshift("webpack-dev-server/client?http://localhost:"+webserverPort+"/", "webpack/hot/dev-server");
+config.entry.main.unshift("webpack-dev-server/client?http://0.0.0.0:"+webserverPort+"/", "webpack/hot/dev-server");
 config.plugins.push( new webpack.HotModuleReplacementPlugin())
 
 var entryHtml
@@ -19,8 +19,10 @@ new WebpackDevServer(compiler, {
   noInfo: false,
 	publicPath: config.output.publicPath,
 	hot: true,
-	colors: true
-   }).listen(webserverPort, 'localhost', function (err, result) {
+  stats:{
+  	colors: true,
+    }
+   }).listen(webserverPort, '0.0.0.0', function (err, result) {
   if (err) {
     return console.log(err)
   }
