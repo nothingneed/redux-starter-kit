@@ -7,9 +7,7 @@ import 'antd/lib/button/style/index.css'
 class Navigator extends Component {
 
   handleItemClick(id) {
-    if (id === id) {
-      this.props.onSwitchCatalog(id)
-    }
+    this.props.onSwitchCatalog(id)
   }
 
 
@@ -17,15 +15,18 @@ class Navigator extends Component {
     const {
       curCatalogID,
     } = this.props
+
+    let type = item.id === curCatalogID ? 'primary' : 'ghost'
     return (
-      <a className={classnames({[styles.selected] : item.id === curCatalogID })}
-         style={{ cursor: 'pointer' }}
-         onClick = {
+      <Button
+        type={type}
+        style={{ cursor: 'pointer' }}
+        onClick={
            () => this.handleItemClick(item.id)
          }
       >
       {item.name}
-      </a>
+      </Button>
     )
   }
 
@@ -35,31 +36,25 @@ class Navigator extends Component {
       catalog,
     } = this.props
     let nodes = catalog.map( //数组类组件需要加入唯一key属性，以优化性能
-      item => <li key = {item.id}>
+      item => <li key={item.id}>
               {this.renderItem(item)}
-              </li>
+      </li>
     )
     return (
-    <navigator className='navigator'>
-
-      <Button >Primary</Button>
-      <Button>Default</Button>
-      <Button type="ghost">Ghost</Button>
-      <Button type="dashed">Dashed</Button>
-
-      <ul className={styles.navigators} >
+      <navigator className="navigator">
+        <ul className={styles.navigators} >
           {nodes}
-      </ul>
-    </navigator>
+        </ul>
+      </navigator>
     )
   }
 }
 
 
 Navigator.propTypes = {
-  catalog:PropTypes.array,
-  curCatalogID:PropTypes.number,
-  onSwitchCatalog: PropTypes.func.isRequired
+  catalog: PropTypes.array,
+  curCatalogID: PropTypes.number,
+  onSwitchCatalog: PropTypes.func.isRequired,
 }
 
 export default Navigator

@@ -40,14 +40,14 @@ module.exports = function (options) {
         loaders: ['json'],
         include: SRC_PATH,
       },
-      {
-        test: /\.less$/,
-        loader: ExtractTextPlugin.extract(
-            'css?sourceMap&modules&localIdentName=[local]___[hash:base64:5]!!' +
-            'postcss!' +
-            `less-loader?{"sourceMap":true,"modifyVars":${JSON.stringify(theme)}}`
-          ),
-      },
+      // {
+      //   test: /\.less$/,
+      //   loader: ExtractTextPlugin.extract(
+      //       'css?sourceMap&modules&localIdentName=[local]___[hash:base64:5]!!' +
+      //       'postcss!' +
+      //       `less-loader?{"sourceMap":true,"modifyVars":${JSON.stringify(theme)}}`
+      //     ),
+      // },
       { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&minetype=application/font-woff' },
       { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&minetype=application/font-woff' },
       { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&minetype=application/octet-stream' },
@@ -67,7 +67,6 @@ module.exports = function (options) {
   ];
   const modulesDirectories = ['node_modules', 'components', 'src', 'containers'];
   const extensions = ['', '.js', '.jsx'];
-
   const publicPath = options.devServer ?
     'http://0.0.0.0:' + webserverPort + '/dist/' :
 		'/dist/';
@@ -128,6 +127,14 @@ module.exports = function (options) {
 			new webpack.NoErrorsPlugin()
 		);
   }
+
+  const postcss = [
+    rucksack(),
+    autoprefixer({
+      browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4'],
+    }),
+  ]
+
   return {
     entry,
     output,
@@ -148,11 +155,6 @@ module.exports = function (options) {
     },
     plugins,
     webserverPort,
-    postcss: [
-      rucksack(),
-      autoprefixer({
-        browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4'],
-      }),
-    ],
-  };
+    postcss,
+  }
 };
