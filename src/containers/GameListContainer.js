@@ -7,7 +7,6 @@ import GameItem from 'GameItem'
 
 class GameListContainer extends Component {
 
-
   render() {
     const { items, isFetching} = this.props
     return (
@@ -26,7 +25,6 @@ class GameListContainer extends Component {
     )
   }
 }
-
 
 function mapStateToProps(state) {
  return {

@@ -31,7 +31,7 @@ module.exports = function (options) {
           + 'postcss'),
       },
       {
-        test: /\.css$/,
+        test: /\.css$/,  //组件中的CSS如果使用modules模式，可能导致无法找到对应的css名称
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
         include: /node_modules/,
       },

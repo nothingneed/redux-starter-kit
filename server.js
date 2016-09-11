@@ -13,10 +13,12 @@ config.entry.main.unshift("webpack-dev-server/client?http://0.0.0.0:"+webserverP
 config.plugins.push( new webpack.HotModuleReplacementPlugin())
 
 var entryHtml
+console.log('***********************--webpack.config--***************************')
 console.log(config)
+console.log('***********************--webpack.config--***************************')
 var compiler = webpack(config)
 new WebpackDevServer(compiler, {
-  noInfo: false,
+  noInfo: true,
 	publicPath: config.output.publicPath,
 	hot: true,
   stats:{
@@ -28,7 +30,9 @@ new WebpackDevServer(compiler, {
   }
   request('http://localhost:'+ webserverPort + '/dist/', function (error, response, body) {
     if (!error && response.statusCode == 200) {
+console.log('***********************--dynamic index.html--***************************')
      console.log(body)
+console.log('***********************--dynamic index.html--***************************')
      entryHtml = body
     }
   })

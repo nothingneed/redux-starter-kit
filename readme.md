@@ -12,8 +12,12 @@
 - npm run devserver: 启动webpack - HotDevServer
 - npm run biuld: 生成生产文件
 
-##feature：
+##基础feature：
 - react + redux + router + cssModule
 - webpack配置动态生成
 - 静态资源加hash，入口使用模板html动态生成
 - 开发时react-hot-loader + 运行时sourceMap调试
+
+##扩展feature
+- 引入蚂蚁金服 ant.design的24栅格系统和UI组件，做了兼容处理，按需加载，避免引入原antd的脚手架和插件，以省去新人新轮子学习成本
+- 
