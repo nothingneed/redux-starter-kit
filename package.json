@@ -7,7 +7,9 @@
   "scripts": {
     "start": "node server.js",
     "devserver": "webpack-dev-server --config webpack-hot-dev-server.config.js --hot --progress --colors --host 0.0.0.0 --port 3001 --inline",
-    "build": "webpack --config webpack-production.config.js --progress --profile --colors"
+    "build": "webpack --config webpack-production.config.js --progress --profile --colors",
+    "test": "./node_modules/mocha/bin/mocha --compilers js:babel-core/register './src/**/*.test.js' --recursive",
+    "atest": "./node_modules/mocha/bin/mocha --compilers js:babel-core/register './src/**/*.test.js' --recursive --grep"
   },
   "dependencies": {
     "antd": "^1.11.0",
@@ -42,6 +44,8 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.3.13",
+    "chai": "^3.5.0",
+    "char": "0.0.0-reserved",
     "cross-env": "^1.0.7",
     "enzyme": "^2.2.0",
     "eslint": "^2.10.1",
@@ -54,7 +58,8 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.22.0",
     "jsdom": "^5.6.1",
-    "mocha": "^2.2.5",
+    "less": "^2.7.1",
+    "mocha": "^2.5.3",
     "node-libs-browser": "^0.5.2",
     "raw-loader": "^0.5.1",
     "react-addons-test-utils": "^0.14.7",

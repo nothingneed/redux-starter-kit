@@ -12,7 +12,7 @@ function getLeagueFilter(list){
 
 function activeALeagueFilter(oldFilter,name){
 
-	oldFilter[name+'act'] = !oldFilter[name+'act'] 
+	oldFilter[name+'act'] = !oldFilter[name+'act']
 	let filter = Object.assign({}, oldFilter, oldFilter[name+'act'] )
 	return filter
 }
@@ -23,7 +23,7 @@ const gameList = (state = {
 	leagueFilter:{}
 }, action) => {
 	switch (action.type) {
-		case types.GETGAMELIST_REQUEST:          	
+		case types.GETGAMELIST_REQUEST:
 			return Object.assign({}, state, {
 				isFetching: true,
 			})
@@ -32,13 +32,13 @@ const gameList = (state = {
 					isFetching: false,
 					items: action.gameList,
 					leagueFilter:(getLeagueFilter(action.gameList))
-				}	
+				}
 			)
-		case types.GETGAMELIST_FAILURE:		
+		case types.GETGAMELIST_FAILURE:
 			return Object.assign({}, state, {
 				isFetching: false,
 			})
-		case types.ACTIVE_A_FILTERS:		
+		case types.ACTIVE_A_FILTERS:
 			return Object.assign({}, state, {
 				leagueFilter:(activeALeagueFilter(state.leagueFilter,name))
 			})
@@ -51,11 +51,11 @@ const gameList = (state = {
 /*如果想分开filter与gamelist，可以如下写法
 const leagueFilter = (state = {}, action) => {
 	switch (action.type) {
-		case types.GETGAMELIST_SUCCESS:          
+		case types.GETGAMELIST_SUCCESS:
 			return getLeagueFilter(action.gameList)
 		case types.ACTIVE_A_FILTERS:
 			return {}
-	
+
 		default:
 			return state
 	}

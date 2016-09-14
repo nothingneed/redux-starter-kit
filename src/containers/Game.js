@@ -26,7 +26,6 @@ class Game extends Component {
        onSwitchCatalog={(id) => this.handleSwitchCatalog(id)}
        />
        <br/>
-       <hr/>
        <GameListContainer />
 
        <Footer />
@@ -62,7 +61,7 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(
   mapStateToProps,
-  { 
+  {
     switchCatalogById,
     getGameListIfNeeded,
   }

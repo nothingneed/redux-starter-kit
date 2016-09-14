@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "extends": "eslint-config-airbnb",
+  //"extends": "eslint-config-airbnb",
   "rules": {
     "spaced-comment": [0],
     "no-unused-vars": [0],
